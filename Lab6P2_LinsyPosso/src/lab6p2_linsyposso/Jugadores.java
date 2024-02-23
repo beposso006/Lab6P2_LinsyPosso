@@ -11,7 +11,7 @@ package lab6p2_linsyposso;
 public class Jugadores {
     private String nombre;
     private int edad;
-    private String pos;
+    protected String pos;
 
     public Jugadores() {
     }

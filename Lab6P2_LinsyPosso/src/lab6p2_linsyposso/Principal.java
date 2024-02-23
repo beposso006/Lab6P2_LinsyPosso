@@ -6,6 +6,9 @@ package lab6p2_linsyposso;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -62,7 +65,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jTree_Equipos = new javax.swing.JTree();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -119,6 +122,11 @@ public class Principal extends javax.swing.JFrame {
 
         jB_aggE.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jB_aggE.setText("Agregar");
+        jB_aggE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jB_aggEMouseClicked(evt);
+            }
+        });
         jPanel2.add(jB_aggE, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 110, 40));
 
         javax.swing.GroupLayout jD_crearELayout = new javax.swing.GroupLayout(jD_crearE.getContentPane());
@@ -211,8 +219,8 @@ public class Principal extends javax.swing.JFrame {
         jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, -1, 30));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipos");
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane2.setViewportView(jTree1);
+        jTree_Equipos.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane2.setViewportView(jTree_Equipos);
 
         jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 142, 200, 290));
 
@@ -385,12 +393,44 @@ public class Principal extends javax.swing.JFrame {
         DefaultListModel modelo = (DefaultListModel) jList_jugadores.getModel();
         modelo.addElement(nuevoj);
         //limpiar campos
+        JOptionPane.showMessageDialog(this, "Agregado Exitosamente");
         tf_nombreJ.setText("");
         jS_edad.setValue(15);
         CB_pos.setSelectedIndex(0);
-
-
     }//GEN-LAST:event_jB_aggJMouseClicked
+
+    private void jB_aggEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_aggEMouseClicked
+       DefaultTreeModel m = (DefaultTreeModel) jTree_Equipos.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
+        DefaultMutableTreeNode nodo_equipo;
+        nodo_equipo= new DefaultMutableTreeNode(new Equipos(tf_nombreE.getText(),
+                             (String) tf_paisE.getText(),
+                           (String) tf_ciudad.getText(),
+                           (String) tf_estadio.getText()));
+        
+        DefaultMutableTreeNode pais;
+        pais = new DefaultMutableTreeNode((String) tf_paisE.getText()); 
+        
+        DefaultMutableTreeNode nequipo;
+        nequipo = new DefaultMutableTreeNode((String) tf_nombreE.getText());
+        
+        DefaultMutableTreeNode pos;
+        pos = new DefaultMutableTreeNode((String) CB_pos.getSelectedItem().toString());
+        
+        
+        pais.add(nequipo);
+        nequipo.add(pos);
+        //pais.add(pos);
+        //nodo_equipo.add(pais);
+        raiz.add(pais);
+        m.reload();
+        JOptionPane.showMessageDialog(this, "Agregado Exitosamente");
+        tf_nombreE.setText("");
+        tf_paisE.setText("");
+        tf_ciudad.setText("");
+        tf_estadio.setText("");
+        
+    }//GEN-LAST:event_jB_aggEMouseClicked
 
     /**
      * @param args the command line arguments
@@ -487,7 +527,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
-    private javax.swing.JTree jTree1;
+    private javax.swing.JTree jTree_Equipos;
     private javax.swing.JMenu jm_help;
     private javax.swing.JMenu jm_ops;
     private javax.swing.JMenuItem jmi_ce;
