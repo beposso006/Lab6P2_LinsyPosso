@@ -4,7 +4,6 @@
  */
 package lab6p2_linsyposso;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -68,6 +67,9 @@ public class Principal extends javax.swing.JFrame {
         jTree_Equipos = new javax.swing.JTree();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        ppm_mod = new javax.swing.JPopupMenu();
+        jmi_modificar = new javax.swing.JMenuItem();
+        jmi_eliminar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         jB_ce = new javax.swing.JButton();
@@ -243,6 +245,22 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
         );
 
+        jmi_modificar.setText("jMenuItem1");
+        jmi_modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_modificarActionPerformed(evt);
+            }
+        });
+        ppm_mod.add(jmi_modificar);
+
+        jmi_eliminar.setText("jMenuItem2");
+        jmi_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_eliminarActionPerformed(evt);
+            }
+        });
+        ppm_mod.add(jmi_eliminar);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -400,24 +418,23 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_aggJMouseClicked
 
     private void jB_aggEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_aggEMouseClicked
-       DefaultTreeModel m = (DefaultTreeModel) jTree_Equipos.getModel();
+        DefaultTreeModel m = (DefaultTreeModel) jTree_Equipos.getModel();
         DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
         DefaultMutableTreeNode nodo_equipo;
-        nodo_equipo= new DefaultMutableTreeNode(new Equipos(tf_nombreE.getText(),
-                             (String) tf_paisE.getText(),
-                           (String) tf_ciudad.getText(),
-                           (String) tf_estadio.getText()));
-        
+        nodo_equipo = new DefaultMutableTreeNode(new Equipos(tf_nombreE.getText(),
+                (String) tf_paisE.getText(),
+                (String) tf_ciudad.getText(),
+                (String) tf_estadio.getText()));
+
         DefaultMutableTreeNode pais;
-        pais = new DefaultMutableTreeNode((String) tf_paisE.getText()); 
-        
+        pais = new DefaultMutableTreeNode((String) tf_paisE.getText());
+
         DefaultMutableTreeNode nequipo;
         nequipo = new DefaultMutableTreeNode((String) tf_nombreE.getText());
-        
+
         DefaultMutableTreeNode pos;
         pos = new DefaultMutableTreeNode((String) CB_pos.getSelectedItem().toString());
-        
-        
+
         pais.add(nequipo);
         nequipo.add(pos);
         //pais.add(pos);
@@ -429,8 +446,20 @@ public class Principal extends javax.swing.JFrame {
         tf_paisE.setText("");
         tf_ciudad.setText("");
         tf_estadio.setText("");
-        
+
     }//GEN-LAST:event_jB_aggEMouseClicked
+
+    private void jmi_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_eliminarActionPerformed
+
+    }//GEN-LAST:event_jmi_eliminarActionPerformed
+
+    private void jmi_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_modificarActionPerformed
+        if (jList_jugadores.getSelectedIndex() >= 0) {
+            DefaultListModel modeloLISTA = (DefaultListModel) jList_jugadores.getModel();
+            ((Jugadores) modeloLISTA.get(jList_jugadores.getSelectedIndex())).setNombre(JOptionPane.showInputDialog("Nombre"));
+            jList_jugadores.setModel(modeloLISTA);
+        }
+    }//GEN-LAST:event_jmi_modificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -532,7 +561,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jm_ops;
     private javax.swing.JMenuItem jmi_ce;
     private javax.swing.JMenuItem jmi_cj;
+    private javax.swing.JMenuItem jmi_eliminar;
+    private javax.swing.JMenuItem jmi_modificar;
     private javax.swing.JMenuItem jmi_transfe;
+    private javax.swing.JPopupMenu ppm_mod;
     private javax.swing.JTextField tf_ciudad;
     private javax.swing.JTextField tf_estadio;
     private javax.swing.JTextField tf_nombreE;
