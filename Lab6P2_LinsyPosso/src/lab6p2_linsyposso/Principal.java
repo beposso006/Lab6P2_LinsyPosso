@@ -18,7 +18,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        llenarComboboxPos();
+
     }
 
     /**
@@ -163,6 +163,7 @@ public class Principal extends javax.swing.JFrame {
         jS_edad.setModel(new javax.swing.SpinnerNumberModel(15, 15, 45, 1));
         jPanel3.add(jS_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 90, -1));
 
+        CB_pos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Portero", "Delantero", "Defensa", "Centro" }));
         jPanel3.add(CB_pos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 100, -1));
 
         jB_aggJ.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -378,17 +379,17 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_transfeMouseClicked
 
     private void jB_aggJMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_aggJMouseClicked
-
-        DefaultListModel modelo = (DefaultListModel) jList_jugadores.getModel();
-        modelo.addElement(new Jugadores(tf_nombreJ.getText(),
+        Jugadores nuevoj = new Jugadores(tf_nombreJ.getText(),
                 (Integer) jS_edad.getValue(),
-                (String) CB_pos.getSelectedItem()
-        )
-        );
-        jList_jugadores.setModel(modelo);
+                CB_pos.getSelectedItem().toString());
+        DefaultListModel modelo = (DefaultListModel) jList_jugadores.getModel();
+        modelo.addElement(nuevoj);
+        //limpiar campos
         tf_nombreJ.setText("");
         jS_edad.setValue(15);
         CB_pos.setSelectedIndex(0);
+
+
     }//GEN-LAST:event_jB_aggJMouseClicked
 
     /**
@@ -446,15 +447,7 @@ public class Principal extends javax.swing.JFrame {
         jD_tranferir.setModal(true);
         jD_tranferir.setVisible(true);
     }
-    
-    public void llenarComboboxPos() {
-        DefaultComboBoxModel modelo = (DefaultComboBoxModel) CB_pos.getModel();
-        modelo.addElement(new Jugadores("Portero"));
-        modelo.addElement(new Jugadores("Delantero"));
-        modelo.addElement(new Jugadores("Defensa"));
-         modelo.addElement(new Jugadores("Centro"));
-        CB_pos.setModel(modelo);
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CB_pos;
