@@ -39,6 +39,17 @@ public class Principal extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jD_crearJ = new javax.swing.JDialog();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jSpinner1 = new javax.swing.JSpinner();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         jB_ce = new javax.swing.JButton();
@@ -106,6 +117,58 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 204, 102));
+        jPanel3.setForeground(new java.awt.Color(255, 204, 102));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Crear Jugadores");
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 310, -1));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Nombre");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 80, -1));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Edad");
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Posicion");
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+
+        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 260, 30));
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(15, 15, 45, 1));
+        jPanel3.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 90, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 100, -1));
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setText("Agregar");
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 100, 40));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_linsyposso/Boroa Pet (1).jpg"))); // NOI18N
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        javax.swing.GroupLayout jD_crearJLayout = new javax.swing.GroupLayout(jD_crearJ.getContentPane());
+        jD_crearJ.getContentPane().setLayout(jD_crearJLayout);
+        jD_crearJLayout.setHorizontalGroup(
+            jD_crearJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
+        );
+        jD_crearJLayout.setVerticalGroup(
+            jD_crearJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -119,6 +182,11 @@ public class Principal extends javax.swing.JFrame {
         jB_ce.setFocusable(false);
         jB_ce.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jB_ce.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jB_ce.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jB_ceMouseClicked(evt);
+            }
+        });
         jToolBar1.add(jB_ce);
 
         jB_cj.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -126,6 +194,11 @@ public class Principal extends javax.swing.JFrame {
         jB_cj.setFocusable(false);
         jB_cj.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jB_cj.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jB_cj.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jB_cjMouseClicked(evt);
+            }
+        });
         jToolBar1.add(jB_cj);
 
         jB_transfe.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -184,6 +257,11 @@ public class Principal extends javax.swing.JFrame {
 
         jmi_cj.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmi_cj.setText("Crear Jugadores");
+        jmi_cj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_cjActionPerformed(evt);
+            }
+        });
         jm_ops.add(jmi_cj);
 
         jmi_transfe.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -203,6 +281,18 @@ public class Principal extends javax.swing.JFrame {
     private void jmi_ceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ceActionPerformed
         abreCrearE();
     }//GEN-LAST:event_jmi_ceActionPerformed
+
+    private void jmi_cjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_cjActionPerformed
+        abreCrearJ();
+    }//GEN-LAST:event_jmi_cjActionPerformed
+
+    private void jB_ceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_ceMouseClicked
+        abreCrearE();
+    }//GEN-LAST:event_jB_ceMouseClicked
+
+    private void jB_cjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_cjMouseClicked
+        abreCrearJ();
+    }//GEN-LAST:event_jB_cjMouseClicked
 
     /**
      * @param args the command line arguments
@@ -238,12 +328,19 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-    
-     private void abreCrearE() {
+
+    private void abreCrearE() {
         jD_crearE.pack();
         jD_crearE.setLocationRelativeTo(this);
         jD_crearE.setModal(true);
         jD_crearE.setVisible(true);
+    }
+
+    private void abreCrearJ() {
+        jD_crearJ.pack();
+        jD_crearJ.setLocationRelativeTo(this);
+        jD_crearJ.setModal(true);
+        jD_crearJ.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -251,8 +348,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jB_cj;
     private javax.swing.JButton jB_transfe;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDialog jD_crearE;
+    private javax.swing.JDialog jD_crearJ;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -260,13 +364,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenu jm_help;
     private javax.swing.JMenu jm_ops;
