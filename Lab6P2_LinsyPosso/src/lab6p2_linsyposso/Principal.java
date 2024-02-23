@@ -4,6 +4,9 @@
  */
 package lab6p2_linsyposso;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author 29164
@@ -15,6 +18,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        llenarComboboxPos();
     }
 
     /**
@@ -34,22 +38,33 @@ public class Principal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        tf_nombreE = new javax.swing.JTextField();
+        tf_paisE = new javax.swing.JTextField();
+        tf_ciudad = new javax.swing.JTextField();
+        tf_estadio = new javax.swing.JTextField();
+        jB_aggE = new javax.swing.JButton();
         jD_crearJ = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        tf_nombreJ = new javax.swing.JTextField();
+        jS_edad = new javax.swing.JSpinner();
+        CB_pos = new javax.swing.JComboBox<>();
+        jB_aggJ = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        jD_tranferir = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList_jugadores = new javax.swing.JList<>();
+        jLabel15 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         jB_ce = new javax.swing.JButton();
@@ -95,16 +110,16 @@ public class Principal extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_linsyposso/Boroa Pet (1).jpg"))); // NOI18N
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 220, 30));
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 220, 30));
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 220, 30));
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 200, 30));
+        tf_nombreE.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_nombreE.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(tf_nombreE, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 220, 30));
+        jPanel2.add(tf_paisE, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 220, 30));
+        jPanel2.add(tf_ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 220, 30));
+        jPanel2.add(tf_estadio, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 200, 30));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Agregar");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 110, 40));
+        jB_aggE.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jB_aggE.setText("Agregar");
+        jPanel2.add(jB_aggE, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, 110, 40));
 
         javax.swing.GroupLayout jD_crearELayout = new javax.swing.GroupLayout(jD_crearE.getContentPane());
         jD_crearE.getContentPane().setLayout(jD_crearELayout);
@@ -141,19 +156,23 @@ public class Principal extends javax.swing.JFrame {
         jLabel12.setText("Posicion");
         jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 260, 30));
+        tf_nombreJ.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tf_nombreJ.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel3.add(tf_nombreJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 260, 30));
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(15, 15, 45, 1));
-        jPanel3.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 90, -1));
+        jS_edad.setModel(new javax.swing.SpinnerNumberModel(15, 15, 45, 1));
+        jPanel3.add(jS_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 90, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 100, -1));
+        jPanel3.add(CB_pos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 100, -1));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText("Agregar");
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 100, 40));
+        jB_aggJ.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jB_aggJ.setText("Agregar");
+        jB_aggJ.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jB_aggJMouseClicked(evt);
+            }
+        });
+        jPanel3.add(jB_aggJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 100, 40));
 
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_linsyposso/Boroa Pet (1).jpg"))); // NOI18N
         jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -167,6 +186,52 @@ public class Principal extends javax.swing.JFrame {
         jD_crearJLayout.setVerticalGroup(
             jD_crearJLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+        );
+
+        jPanel4.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("Transferencias");
+        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 280, -1));
+
+        jList_jugadores.setModel(new DefaultListModel());
+        jScrollPane1.setViewportView(jList_jugadores);
+
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 180, 280));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Jugadores");
+        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 80, -1));
+
+        jButton3.setText("Transferir ->");
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, -1, 30));
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipos");
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane2.setViewportView(jTree1);
+
+        jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 142, 200, 290));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Equipos");
+        jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 60, -1));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_linsyposso/Boroa Pet (1).jpg"))); // NOI18N
+        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        javax.swing.GroupLayout jD_tranferirLayout = new javax.swing.GroupLayout(jD_tranferir.getContentPane());
+        jD_tranferir.getContentPane().setLayout(jD_tranferirLayout);
+        jD_tranferirLayout.setHorizontalGroup(
+            jD_tranferirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
+        );
+        jD_tranferirLayout.setVerticalGroup(
+            jD_tranferirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -206,6 +271,11 @@ public class Principal extends javax.swing.JFrame {
         jB_transfe.setFocusable(false);
         jB_transfe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jB_transfe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jB_transfe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jB_transfeMouseClicked(evt);
+            }
+        });
         jToolBar1.add(jB_transfe);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab6p2_linsyposso/Boroa League Fantasy (1) (1) (1).jpg"))); // NOI18N
@@ -266,6 +336,11 @@ public class Principal extends javax.swing.JFrame {
 
         jmi_transfe.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jmi_transfe.setText("Transferencias");
+        jmi_transfe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_transfeActionPerformed(evt);
+            }
+        });
         jm_ops.add(jmi_transfe);
 
         jMenuBar2.add(jm_ops);
@@ -293,6 +368,28 @@ public class Principal extends javax.swing.JFrame {
     private void jB_cjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_cjMouseClicked
         abreCrearJ();
     }//GEN-LAST:event_jB_cjMouseClicked
+
+    private void jmi_transfeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_transfeActionPerformed
+        abreTransfer();
+    }//GEN-LAST:event_jmi_transfeActionPerformed
+
+    private void jB_transfeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_transfeMouseClicked
+        abreTransfer();
+    }//GEN-LAST:event_jB_transfeMouseClicked
+
+    private void jB_aggJMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_aggJMouseClicked
+
+        DefaultListModel modelo = (DefaultListModel) jList_jugadores.getModel();
+        modelo.addElement(new Jugadores(tf_nombreJ.getText(),
+                (Integer) jS_edad.getValue(),
+                (String) CB_pos.getSelectedItem()
+        )
+        );
+        jList_jugadores.setModel(modelo);
+        tf_nombreJ.setText("");
+        jS_edad.setValue(15);
+        CB_pos.setSelectedIndex(0);
+    }//GEN-LAST:event_jB_aggJMouseClicked
 
     /**
      * @param args the command line arguments
@@ -343,20 +440,42 @@ public class Principal extends javax.swing.JFrame {
         jD_crearJ.setVisible(true);
     }
 
+    private void abreTransfer() {
+        jD_tranferir.pack();
+        jD_tranferir.setLocationRelativeTo(this);
+        jD_tranferir.setModal(true);
+        jD_tranferir.setVisible(true);
+    }
+    
+    public void llenarComboboxPos() {
+        DefaultComboBoxModel modelo = (DefaultComboBoxModel) CB_pos.getModel();
+        modelo.addElement(new Jugadores("Portero"));
+        modelo.addElement(new Jugadores("Delantero"));
+        modelo.addElement(new Jugadores("Defensa"));
+         modelo.addElement(new Jugadores("Centro"));
+        CB_pos.setModel(modelo);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CB_pos;
+    private javax.swing.JButton jB_aggE;
+    private javax.swing.JButton jB_aggJ;
     private javax.swing.JButton jB_ce;
     private javax.swing.JButton jB_cj;
     private javax.swing.JButton jB_transfe;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JDialog jD_crearE;
     private javax.swing.JDialog jD_crearJ;
+    private javax.swing.JDialog jD_tranferir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -365,21 +484,26 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList_jugadores;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JSpinner jS_edad;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JTree jTree1;
     private javax.swing.JMenu jm_help;
     private javax.swing.JMenu jm_ops;
     private javax.swing.JMenuItem jmi_ce;
     private javax.swing.JMenuItem jmi_cj;
     private javax.swing.JMenuItem jmi_transfe;
+    private javax.swing.JTextField tf_ciudad;
+    private javax.swing.JTextField tf_estadio;
+    private javax.swing.JTextField tf_nombreE;
+    private javax.swing.JTextField tf_nombreJ;
+    private javax.swing.JTextField tf_paisE;
     // End of variables declaration//GEN-END:variables
 }

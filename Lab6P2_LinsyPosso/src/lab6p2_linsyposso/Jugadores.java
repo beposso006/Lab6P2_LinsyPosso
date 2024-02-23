@@ -22,6 +22,12 @@ public class Jugadores {
         this.pos = pos;
     }
 
+    public Jugadores(String pos) {
+        this.pos = pos;
+    }
+    
+    
+
     public String getNombre() {
         return nombre;
     }
@@ -48,7 +54,7 @@ public class Jugadores {
 
     @Override
     public String toString() {
-        return "Jugadores{" + "nombre=" + nombre + ", edad=" + edad + ", pos=" + pos + '}';
+        return pos;
     }
     
     
