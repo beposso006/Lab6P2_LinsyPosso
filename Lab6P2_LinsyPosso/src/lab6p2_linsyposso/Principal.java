@@ -431,6 +431,7 @@ public class Principal extends javax.swing.JFrame {
         CB_pos.setSelectedIndex(0);
     }//GEN-LAST:event_jB_aggJMouseClicked
 
+
     private void jB_aggEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_aggEMouseClicked
         if (tf_paisE.getText().matches(".\\d.") || tf_ciudad.getText().matches(".\\d.")) {
             JOptionPane.showMessageDialog(null, "La ciudad o El pais no deben incluir numeros");
@@ -439,7 +440,6 @@ public class Principal extends javax.swing.JFrame {
             DefaultTreeModel modelo = (DefaultTreeModel) jTree_Equipos.getModel();
             DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
             Equipos equipo = new Equipos(tf_paisE.getText(), tf_nombreE.getText(), tf_ciudad.getText(), tf_estadio.getText());
-
             for (int i = 0; i < raiz.getChildCount(); i++) {
                 DefaultMutableTreeNode nodoPais = (DefaultMutableTreeNode) raiz.getChildAt(i);
                 if (nodoPais.getUserObject().equals(equipo.getPais())) {
@@ -449,26 +449,22 @@ public class Principal extends javax.swing.JFrame {
                     break;
                 }
             }
-
             if (!registrado) {
                 DefaultMutableTreeNode nodoPais = new DefaultMutableTreeNode(equipo.getPais());
                 DefaultMutableTreeNode nodoEquipo = new DefaultMutableTreeNode(equipo);
-               // DefaultMutableTreeNode pos;
+                // DefaultMutableTreeNode pos;
                 //pos = new DefaultMutableTreeNode((String) CB_pos.getSelectedItem().toString());
-
                 nodoPais.add(nodoEquipo);
                 raiz.add(nodoPais);
             }
-
             //DefaultMutableTreeNode pos;
             //pos = new DefaultMutableTreeNode((String) CB_pos.getSelectedItem().toString());
-
             modelo.reload();
             tf_nombreE.setText("");
             tf_paisE.setText("");
             tf_ciudad.setText("");
             tf_estadio.setText("");
-            JOptionPane.showMessageDialog(null, "Equipo Agregado con exito");
+            JOptionPane.showMessageDialog(null, "Agregado Exitosamente");
         }
     }//GEN-LAST:event_jB_aggEMouseClicked
 
@@ -488,6 +484,7 @@ public class Principal extends javax.swing.JFrame {
             ((Jugadores) modeloLISTA.get(jList_jugadores.getSelectedIndex())).setEdad(Integer.parseInt(JOptionPane.showInputDialog("Edad")));
             jList_jugadores.setModel(modeloLISTA);
         }
+
     }//GEN-LAST:event_jmi_modificarActionPerformed
 
     private void jList_jugadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList_jugadoresMouseClicked
