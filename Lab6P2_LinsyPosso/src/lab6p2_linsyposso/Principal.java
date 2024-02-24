@@ -17,7 +17,8 @@ public class Principal extends javax.swing.JFrame {
 
     DefaultMutableTreeNode nodoSeleccionado;
     Jugadores jugadorTranferible;
-    Equipos equipoTransferir;
+    DefaultMutableTreeNode nodo_seleccionado;
+    Equipos equipoSeleccionado;
 
     /**
      * Creates new form Principal
@@ -74,6 +75,8 @@ public class Principal extends javax.swing.JFrame {
         ppm_mod = new javax.swing.JPopupMenu();
         jmi_modificar = new javax.swing.JMenuItem();
         jmi_eliminar = new javax.swing.JMenuItem();
+        ppm_eliminar = new javax.swing.JPopupMenu();
+        jmi_eliminarTree = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         jB_ce = new javax.swing.JButton();
@@ -236,6 +239,11 @@ public class Principal extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipos");
         jTree_Equipos.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jTree_Equipos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTree_EquiposMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTree_Equipos);
 
         jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 142, 200, 290));
@@ -274,6 +282,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         ppm_mod.add(jmi_eliminar);
+
+        jmi_eliminarTree.setText("Eliminar");
+        jmi_eliminarTree.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_eliminarTreeActionPerformed(evt);
+            }
+        });
+        ppm_eliminar.add(jmi_eliminarTree);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -522,8 +538,38 @@ public class Principal extends javax.swing.JFrame {
                 modeloArbol.reload(nodoSeleccionado);
                 nodoSeleccionado = null;
             }
+        }
     }//GEN-LAST:event_jB_transferirMouseClicked
-    }
+
+    private void jTree_EquiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree_EquiposMouseClicked
+        if (evt.getButton() == 3) {
+            //seleccionar un nodo con click derecho
+            int row = jTree_Equipos.getClosestRowForLocation(
+                    evt.getX(), evt.getY());
+            jTree_Equipos.setSelectionRow(row);
+            Object v1
+                    = jTree_Equipos.getSelectionPath().
+                            getLastPathComponent();
+            nodo_seleccionado = (DefaultMutableTreeNode) v1;
+            if (nodo_seleccionado.getUserObject() instanceof Equipos) {
+                equipoSeleccionado
+                        = (Equipos) nodo_seleccionado.
+                                getUserObject();
+                ppm_eliminar.show(evt.getComponent(),
+                        evt.getX(), evt.getY());
+            }
+
+        }
+    }//GEN-LAST:event_jTree_EquiposMouseClicked
+
+    private void jmi_eliminarTreeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_eliminarTreeActionPerformed
+        int response = JOptionPane.showConfirmDialog(this, "Seguro de Eliminar?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.OK_OPTION) {
+            DefaultTreeModel m = (DefaultTreeModel) jTree_Equipos.getModel();
+            m.removeNodeFromParent(nodo_seleccionado);
+            m.reload();
+        }
+    }//GEN-LAST:event_jmi_eliminarTreeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -626,8 +672,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_ce;
     private javax.swing.JMenuItem jmi_cj;
     private javax.swing.JMenuItem jmi_eliminar;
+    private javax.swing.JMenuItem jmi_eliminarTree;
     private javax.swing.JMenuItem jmi_modificar;
     private javax.swing.JMenuItem jmi_transfe;
+    private javax.swing.JPopupMenu ppm_eliminar;
     private javax.swing.JPopupMenu ppm_mod;
     private javax.swing.JTextField tf_ciudad;
     private javax.swing.JTextField tf_estadio;
@@ -635,4 +683,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombreJ;
     private javax.swing.JTextField tf_paisE;
     // End of variables declaration//GEN-END:variables
+
 }
