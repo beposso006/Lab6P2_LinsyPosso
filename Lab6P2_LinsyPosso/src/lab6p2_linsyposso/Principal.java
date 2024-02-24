@@ -14,7 +14,9 @@ import javax.swing.tree.DefaultTreeModel;
  * @author 29164
  */
 public class Principal extends javax.swing.JFrame {
-
+DefaultMutableTreeNode nodoSeleccionado;
+Jugadores jugadorTranferible;
+Equipos equipoTransferir;
     /**
      * Creates new form Principal
      */
@@ -62,7 +64,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList_jugadores = new javax.swing.JList<>();
         jLabel15 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jB_transferir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTree_Equipos = new javax.swing.JTree();
         jLabel16 = new javax.swing.JLabel();
@@ -208,6 +210,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 280, -1));
 
         jList_jugadores.setModel(new DefaultListModel());
+        jList_jugadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList_jugadoresMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList_jugadores);
 
         jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 180, 280));
@@ -217,8 +224,13 @@ public class Principal extends javax.swing.JFrame {
         jLabel15.setText("Jugadores");
         jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 80, -1));
 
-        jButton3.setText("Transferir ->");
-        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, -1, 30));
+        jB_transferir.setText("Transferir ->");
+        jB_transferir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jB_transferirMouseClicked(evt);
+            }
+        });
+        jPanel4.add(jB_transferir, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, -1, 30));
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Equipos");
         jTree_Equipos.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
@@ -245,7 +257,7 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
         );
 
-        jmi_modificar.setText("jMenuItem1");
+        jmi_modificar.setText("Modificar");
         jmi_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_modificarActionPerformed(evt);
@@ -253,7 +265,7 @@ public class Principal extends javax.swing.JFrame {
         });
         ppm_mod.add(jmi_modificar);
 
-        jmi_eliminar.setText("jMenuItem2");
+        jmi_eliminar.setText("Eliminar");
         jmi_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmi_eliminarActionPerformed(evt);
@@ -421,8 +433,8 @@ public class Principal extends javax.swing.JFrame {
         DefaultTreeModel m = (DefaultTreeModel) jTree_Equipos.getModel();
         DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
         DefaultMutableTreeNode nodo_equipo;
-        nodo_equipo = new DefaultMutableTreeNode(new Equipos(tf_nombreE.getText(),
-                (String) tf_paisE.getText(),
+        nodo_equipo = new DefaultMutableTreeNode(new Equipos(tf_paisE.getText(),
+                (String) tf_nombreE.getText(),
                 (String) tf_ciudad.getText(),
                 (String) tf_estadio.getText()));
 
@@ -435,10 +447,10 @@ public class Principal extends javax.swing.JFrame {
         DefaultMutableTreeNode pos;
         pos = new DefaultMutableTreeNode((String) CB_pos.getSelectedItem().toString());
 
-        pais.add(nequipo);
-        nequipo.add(pos);
-        //pais.add(pos);
-        //nodo_equipo.add(pais);
+        
+       //nodo_equipo.add(pos);
+        pais.add(nodo_equipo);
+        
         raiz.add(pais);
         m.reload();
         JOptionPane.showMessageDialog(this, "Agregado Exitosamente");
@@ -450,17 +462,61 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jB_aggEMouseClicked
 
     private void jmi_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_eliminarActionPerformed
-
+        if (jList_jugadores.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel) jList_jugadores.getModel();
+                modelo.remove(jList_jugadores.getSelectedIndex());
+                jList_jugadores.setModel(modelo);
+                JOptionPane.showMessageDialog(this,"Eliminado exitosamente");
+            } 
     }//GEN-LAST:event_jmi_eliminarActionPerformed
-
+    
     private void jmi_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_modificarActionPerformed
         if (jList_jugadores.getSelectedIndex() >= 0) {
             DefaultListModel modeloLISTA = (DefaultListModel) jList_jugadores.getModel();
             ((Jugadores) modeloLISTA.get(jList_jugadores.getSelectedIndex())).setNombre(JOptionPane.showInputDialog("Nombre"));
+            ((Jugadores) modeloLISTA.get(jList_jugadores.getSelectedIndex())).setEdad(Integer.parseInt(JOptionPane.showInputDialog("Edad")));
             jList_jugadores.setModel(modeloLISTA);
         }
     }//GEN-LAST:event_jmi_modificarActionPerformed
 
+    private void jList_jugadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList_jugadoresMouseClicked
+        if (evt.isMetaDown()) {
+            ppm_mod.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_jList_jugadoresMouseClicked
+
+    private void jB_transferirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_transferirMouseClicked
+     boolean registrado = false;  
+        if (jList_jugadores.getSelectedIndex() >= 0 && jTree_Equipos.getSelectionPath() != null) {
+        DefaultTreeModel modeloArbol= (DefaultTreeModel)jTree_Equipos.getModel();
+            DefaultListModel modeloLista = (DefaultListModel) jList_jugadores.getModel();
+            jugadorTranferible = (Jugadores) modeloLista.getElementAt(jList_jugadores.getSelectedIndex());
+
+            nodoSeleccionado = (DefaultMutableTreeNode) jTree_Equipos.getSelectionPath().getLastPathComponent();
+            if (nodoSeleccionado.getUserObject() instanceof Equipos) {
+                for (int i = 0; i < nodoSeleccionado.getChildCount(); i++) {
+                    DefaultMutableTreeNode nodoPosicion = (DefaultMutableTreeNode) nodoSeleccionado.getChildAt(i);
+                    if (nodoPosicion.getUserObject().equals(jugadorTranferible.getPos())) {
+                        DefaultMutableTreeNode nodoJugador = new DefaultMutableTreeNode(jugadorTranferible);
+                        nodoPosicion.add(nodoJugador);
+                        registrado = true;
+                        break;
+                    }
+                }
+                if (!registrado) {
+                    DefaultMutableTreeNode nodoPosicion = new DefaultMutableTreeNode(jugadorTranferible.getPos());
+                    DefaultMutableTreeNode nodoJugador = new DefaultMutableTreeNode(jugadorTranferible);
+                    nodoPosicion.add(nodoJugador);
+                    nodoSeleccionado.add(nodoPosicion);
+       
+                }
+                JOptionPane.showMessageDialog(null, "Jugador Transferido Exitosamente");
+               modeloArbol.reload(nodoSeleccionado);
+            }
+    }//GEN-LAST:event_jB_transferirMouseClicked
+    }
+       
+       
     /**
      * @param args the command line arguments
      */
@@ -517,6 +573,7 @@ public class Principal extends javax.swing.JFrame {
         jD_tranferir.setVisible(true);
     }
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CB_pos;
@@ -525,7 +582,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jB_ce;
     private javax.swing.JButton jB_cj;
     private javax.swing.JButton jB_transfe;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jB_transferir;
     private javax.swing.JDialog jD_crearE;
     private javax.swing.JDialog jD_crearJ;
     private javax.swing.JDialog jD_tranferir;

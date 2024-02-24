@@ -58,7 +58,7 @@ public class Equipos {
 
     @Override
     public String toString() {
-        return pais;
+        return nEquipo;
     }
     
     
