@@ -14,9 +14,11 @@ import javax.swing.tree.DefaultTreeModel;
  * @author 29164
  */
 public class Principal extends javax.swing.JFrame {
-DefaultMutableTreeNode nodoSeleccionado;
-Jugadores jugadorTranferible;
-Equipos equipoTransferir;
+
+    DefaultMutableTreeNode nodoSeleccionado;
+    Jugadores jugadorTranferible;
+    Equipos equipoTransferir;
+
     /**
      * Creates new form Principal
      */
@@ -430,46 +432,55 @@ Equipos equipoTransferir;
     }//GEN-LAST:event_jB_aggJMouseClicked
 
     private void jB_aggEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_aggEMouseClicked
-        DefaultTreeModel m = (DefaultTreeModel) jTree_Equipos.getModel();
-        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
-        DefaultMutableTreeNode nodo_equipo;
-        nodo_equipo = new DefaultMutableTreeNode(new Equipos(tf_paisE.getText(),
-                (String) tf_nombreE.getText(),
-                (String) tf_ciudad.getText(),
-                (String) tf_estadio.getText()));
+        if (tf_paisE.getText().matches(".\\d.") || tf_ciudad.getText().matches(".\\d.")) {
+            JOptionPane.showMessageDialog(null, "La ciudad o El pais no deben incluir numeros");
+        } else {
+            boolean registrado = false;
+            DefaultTreeModel modelo = (DefaultTreeModel) jTree_Equipos.getModel();
+            DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
+            Equipos equipo = new Equipos(tf_paisE.getText(), tf_nombreE.getText(), tf_ciudad.getText(), tf_estadio.getText());
 
-        DefaultMutableTreeNode pais;
-        pais = new DefaultMutableTreeNode((String) tf_paisE.getText());
+            for (int i = 0; i < raiz.getChildCount(); i++) {
+                DefaultMutableTreeNode nodoPais = (DefaultMutableTreeNode) raiz.getChildAt(i);
+                if (nodoPais.getUserObject().equals(equipo.getPais())) {
+                    DefaultMutableTreeNode nodoEquipo = new DefaultMutableTreeNode(equipo);
+                    nodoPais.add(nodoEquipo);
+                    registrado = true;
+                    break;
+                }
+            }
 
-        DefaultMutableTreeNode nequipo;
-        nequipo = new DefaultMutableTreeNode((String) tf_nombreE.getText());
+            if (!registrado) {
+                DefaultMutableTreeNode nodoPais = new DefaultMutableTreeNode(equipo.getPais());
+                DefaultMutableTreeNode nodoEquipo = new DefaultMutableTreeNode(equipo);
+               // DefaultMutableTreeNode pos;
+                //pos = new DefaultMutableTreeNode((String) CB_pos.getSelectedItem().toString());
 
-        DefaultMutableTreeNode pos;
-        pos = new DefaultMutableTreeNode((String) CB_pos.getSelectedItem().toString());
+                nodoPais.add(nodoEquipo);
+                raiz.add(nodoPais);
+            }
 
-        
-       //nodo_equipo.add(pos);
-        pais.add(nodo_equipo);
-        
-        raiz.add(pais);
-        m.reload();
-        JOptionPane.showMessageDialog(this, "Agregado Exitosamente");
-        tf_nombreE.setText("");
-        tf_paisE.setText("");
-        tf_ciudad.setText("");
-        tf_estadio.setText("");
+            //DefaultMutableTreeNode pos;
+            //pos = new DefaultMutableTreeNode((String) CB_pos.getSelectedItem().toString());
 
+            modelo.reload();
+            tf_nombreE.setText("");
+            tf_paisE.setText("");
+            tf_ciudad.setText("");
+            tf_estadio.setText("");
+            JOptionPane.showMessageDialog(null, "Equipo Agregado con exito");
+        }
     }//GEN-LAST:event_jB_aggEMouseClicked
 
     private void jmi_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_eliminarActionPerformed
         if (jList_jugadores.getSelectedIndex() >= 0) {
             DefaultListModel modelo = (DefaultListModel) jList_jugadores.getModel();
-                modelo.remove(jList_jugadores.getSelectedIndex());
-                jList_jugadores.setModel(modelo);
-                JOptionPane.showMessageDialog(this,"Eliminado exitosamente");
-            } 
+            modelo.remove(jList_jugadores.getSelectedIndex());
+            jList_jugadores.setModel(modelo);
+            JOptionPane.showMessageDialog(this, "Eliminado exitosamente");
+        }
     }//GEN-LAST:event_jmi_eliminarActionPerformed
-    
+
     private void jmi_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_modificarActionPerformed
         if (jList_jugadores.getSelectedIndex() >= 0) {
             DefaultListModel modeloLISTA = (DefaultListModel) jList_jugadores.getModel();
@@ -486,9 +497,9 @@ Equipos equipoTransferir;
     }//GEN-LAST:event_jList_jugadoresMouseClicked
 
     private void jB_transferirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jB_transferirMouseClicked
-     boolean registrado = false;  
+        boolean registrado = false;
         if (jList_jugadores.getSelectedIndex() >= 0 && jTree_Equipos.getSelectionPath() != null) {
-        DefaultTreeModel modeloArbol= (DefaultTreeModel)jTree_Equipos.getModel();
+            DefaultTreeModel modeloArbol = (DefaultTreeModel) jTree_Equipos.getModel();
             DefaultListModel modeloLista = (DefaultListModel) jList_jugadores.getModel();
             jugadorTranferible = (Jugadores) modeloLista.getElementAt(jList_jugadores.getSelectedIndex());
 
@@ -508,15 +519,15 @@ Equipos equipoTransferir;
                     DefaultMutableTreeNode nodoJugador = new DefaultMutableTreeNode(jugadorTranferible);
                     nodoPosicion.add(nodoJugador);
                     nodoSeleccionado.add(nodoPosicion);
-       
+
                 }
                 JOptionPane.showMessageDialog(null, "Jugador Transferido Exitosamente");
-               modeloArbol.reload(nodoSeleccionado);
+                modeloArbol.reload(nodoSeleccionado);
+                nodoSeleccionado = null;
             }
     }//GEN-LAST:event_jB_transferirMouseClicked
     }
-       
-       
+
     /**
      * @param args the command line arguments
      */
@@ -573,7 +584,6 @@ Equipos equipoTransferir;
         jD_tranferir.setVisible(true);
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CB_pos;

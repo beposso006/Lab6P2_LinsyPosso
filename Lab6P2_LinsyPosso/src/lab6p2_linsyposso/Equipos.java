@@ -24,6 +24,12 @@ public class Equipos {
         this.estadio = estadio;
     }
 
+    public Equipos(String pais) {
+        this.pais = pais;
+    }
+    
+    
+
     public String getPais() {
         return pais;
     }
